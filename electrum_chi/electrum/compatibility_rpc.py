@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Electrum-CHI - lightweight Xaya client
-# Copyright (C) 2019-2020 The Xaya developers
+# Copyright (C) 2019-2022 The Xaya developers
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation files
@@ -171,9 +171,11 @@ class Logic (Logger):
   async def name_register (self, name, value, options=None):
     opts = self.interpretNameOpOptions (options)
     tx = await self.cmd_runner.name_register (name, value, **opts)
+    await self.cmd_runner.addtransaction (tx["hex"])
     return await self.cmd_runner.broadcast (tx["hex"])
 
   async def name_update (self, name, value, options=None):
     opts = self.interpretNameOpOptions (options)
     tx = await self.cmd_runner.name_update (name, value, **opts)
+    await self.cmd_runner.addtransaction (tx["hex"])
     return await self.cmd_runner.broadcast (tx["hex"])

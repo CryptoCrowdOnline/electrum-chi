@@ -11,6 +11,6 @@ certifi
 bitstring
 pycryptodomex>=3.7
 jsonrpcserver
-jsonrpcclient
+jsonrpcclient==3
 
 neoscrypt_python>=1.0.2
